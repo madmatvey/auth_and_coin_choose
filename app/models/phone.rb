@@ -17,10 +17,13 @@ class Phone < ApplicationRecord
     end
   end
 
+
+  
   def check_token(token_to_check)
     token_sended = self.validation_tokens.last
     if token_sended.is_on_time?
       token_sended.token == token_to_check
+      update_attribute('active', true)
     else
       puts "token expired!"
     end
