@@ -10,6 +10,9 @@ class UsersController < ApplicationController
     unless @user == current_user
       redirect_to root_path, :alert => "Access denied."
     end
+    unless current_user.phones.take
+      # flash.now[:notice] = "You should set phone number"
+    end
   end
 
 end
