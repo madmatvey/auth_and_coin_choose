@@ -2,6 +2,14 @@ class Phone < ApplicationRecord
   belongs_to :user, optional: true
   has_many :validation_tokens
   has_one :confirm_code, -> { where(phone_id: @id) }, class_name: 'ValidationToken'
+  validates :number, uniqueness: true
+  #   telephone_number: {country: proc{|record| record.country}, types: [:mobile]}
+  validate do |phone|
+    PhoneNumberValidator.new(phone).validate
+  end
+
+  attr_accessor :country_code 
+
 
   def send_validation
     if self.number != nil
@@ -12,10 +20,12 @@ class Phone < ApplicationRecord
         tk = ValidationToken.create(phone_id: self.id)
 
         # for dummy tests commenting below code
+
         # client.api.account.messages.create({
         #   messaging_service_sid: Rails.application.secrets.messaging_service_sid,
         #   to: phone_object.e164_number,
         #   body: "Code: #{tk.token}"})
+
       end
     end
   end
@@ -34,4 +44,18 @@ class Phone < ApplicationRecord
     end
   end
 
+end
+
+
+class PhoneNumberValidator < ActiveModel::Validator
+  def initialize(phone)
+    @phone = phone
+  end
+
+  def validate
+    phone_object = TelephoneNumber.parse(@phone.number) # https://github.com/mobi/telephone_number
+    unless phone_object.valid? && phone_object.valid_types.include?(:mobile)
+      @phone.errors[:base] << "Phone not valid or not mobile number"
+    end
+  end
 end

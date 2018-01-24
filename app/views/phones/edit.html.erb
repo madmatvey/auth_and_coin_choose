@@ -1,3 +1,3 @@
-<h1>Confirm phone</h1>
-<p>We sent to <%= @phone.number %> a confirmation code</p>
-<%= render 'confirm', phone: @phone %>
+<h1>Edit phone</h1>
+
+<%= render 'form', phone: @phone, country_codes: @country_codes %>

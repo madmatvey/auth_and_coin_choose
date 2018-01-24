@@ -13,6 +13,8 @@
 
   <div class="field">
     <%= f.label :number %>
+
+   +<%= f.select :country_code, options_for_select(country_codes) %>
     <%= f.text_field :number %>
   </div>
 

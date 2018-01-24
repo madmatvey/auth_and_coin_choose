@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     end
     if current_user.current_phone == nil
       if current_user.phones.size == 1
-        flash[:warning] = "You should #{view_context.link_to("confirm phone number", edit_phone_path(current_user.phones.last), data: {loads_in_ajax_modal: true})}"
+        flash[:warning] = "You should #{view_context.link_to("confirm phone number", confirm_phone_path(current_user.phones.last), data: {loads_in_ajax_modal: true})}"
       else
         flash[:warning] = "You should #{view_context.link_to("set phone number", new_phone_path, data: {loads_in_ajax_modal: true})}"
       end
