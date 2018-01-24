@@ -40,6 +40,8 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
+    ajax_modal_rails (1.0.8)
+      rails (~> 5.1.4)
     arel (8.0.0)
     autoprefixer-rails (7.2.5)
       execjs
@@ -264,6 +266,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ajax_modal_rails (~> 1.0)
   better_errors
   bootstrap (~> 4.0.0.alpha6)
   byebug
