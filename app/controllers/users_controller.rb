@@ -6,7 +6,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    if params[:id]
+      @user = User.find(params[:id])
+    else
+      @user = current_user
+    end
+
+    # @user = User.find(params[:id])
     unless @user == current_user
       redirect_to root_path, :alert => "Access denied."
     end
@@ -15,6 +21,11 @@ class UsersController < ApplicationController
         flash[:warning] = "You should #{view_context.link_to("confirm phone number", confirm_phone_path(current_user.phones.last), data: {loads_in_ajax_modal: true})}"
       else
         flash[:warning] = "You should #{view_context.link_to("set phone number", new_phone_path, data: {loads_in_ajax_modal: true})}"
+      end
+    else
+      if current_user.currency == nil
+        flash[:warning] = "You should #{view_context.link_to("choose your coins", new_currency_path(current_user.phones.last), data: {loads_in_ajax_modal: true})}"
+        # redirect_to root_path, :alert => "Access denied."
       end
       #{view_context.link_to("profile page", link_path)}, and edit it!"
       #{link_to 'Add Phone', new_phone_path, data: {loads_in_ajax_modal: true}}"

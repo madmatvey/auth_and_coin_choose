@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  root to: 'visitors#index'
+  resources :currencies
   devise_for :users
   resources :users
   resources :phones
   get '/phones/:id/confirm', to: 'phones#confirm', :as => :confirm_phone
-  # put '/phones/:id/' => 'phones#update'
+
+  authenticated :user do
+    root 'users#show', as: :authenticated_root
+  end
+  root to: 'visitors#index'
 end

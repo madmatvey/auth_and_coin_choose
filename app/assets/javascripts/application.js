@@ -16,4 +16,5 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require ajax_modal_rails
+//= require effective_form_inputs
 //= require_tree .

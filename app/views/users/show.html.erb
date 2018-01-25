@@ -2,3 +2,8 @@
 <p>Name: <%= @user.name if @user.name %></p>
 <p>Email: <%= @user.email if @user.email %></p>
 <p>Phone: <%= @user.current_phone.number if @user.current_phone %></p>
+<% if @user.currency %>
+  <p>Bitcoin: <%= @user.currency.bitcoin %></p>
+  <p>Lightcoin: <%= @user.currency.lightcoin %></p>
+  <p>Dogecoin: <%= @user.currency.dogecoin %></p>
+<% end %>

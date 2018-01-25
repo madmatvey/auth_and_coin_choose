@@ -2,13 +2,18 @@ class Phone < ApplicationRecord
   belongs_to :user, optional: true
   has_many :validation_tokens
   has_one :confirm_code, -> { where(phone_id: @id) }, class_name: 'ValidationToken'
-  validates :number, uniqueness: true
+  validates :normalized_number, uniqueness: true
+  # validates :phone, effective_tel: true
   #   telephone_number: {country: proc{|record| record.country}, types: [:mobile]}
   validate do |phone|
     PhoneNumberValidator.new(phone).validate
   end
 
-  attr_accessor :country_code 
+  attr_accessor :number
+
+  def number
+    country_code+normalized_number
+  end
 
 
   def send_validation

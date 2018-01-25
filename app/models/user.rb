@@ -5,9 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :phones, dependent: :destroy
   has_one :current_phone, -> { where(active: true) }, class_name: 'Phone'
+  has_one :currency
 
   # @return [String] - example: "79991231234"
-  def phone_number
-    number ||= current_phone.number
-  end
+  # def phone_number
+  #   number ||= current_phone.number
+  # end
 end

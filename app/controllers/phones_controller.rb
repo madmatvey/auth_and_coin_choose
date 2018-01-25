@@ -3,20 +3,24 @@ class PhonesController < ApplicationController
   include AjaxModalRails::Controller
   def new
     @phone = Phone.new
-    @country_codes=TelephoneNumber::Country.all_countries.map{ |x| [x.country_id, x.country_code] }
+    # @country_codes=TelephoneNumber::Country.all_countries.map{ |x| [x.country_id, x.country_code] }
   end
 
   def edit
+    # @country_codes=TelephoneNumber::Country.all_countries.map{ |x| [x.country_id, x.country_code] }
+    # @country_code=TelephoneNumber.parse(@phone.number).country.country_code
+    # @number=TelephoneNumber.parse(@phone.number).normalized_number
   end
 
   def confirm
   end
 
   def create
-    @phone = Phone.new(number: "#{phone_params[:country_code]+phone_params[:number]}")
+    @phone = Phone.new(phone_params)
     @phone.user_id = current_user.id
+    # puts @phone.to_s
     respond_to do |format|
-      if @phone.save(phone_params)
+      if @phone.save
         @phone.send_validation
         format.html { redirect_to current_user }
         format.json
@@ -47,7 +51,7 @@ class PhonesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def phone_params
-      params.require(:phone).permit(:number,:confirm_code,:country_code)
+      params.require(:phone).permit(:normalized_number,:confirm_code,:country_code)
     end
 
 end

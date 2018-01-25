@@ -16,6 +16,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'twilio-ruby', '~> 5.6.1'
 gem 'telephone_number'
 gem 'ajax_modal_rails', '~> 1.0'
+gem 'effective_form_inputs'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

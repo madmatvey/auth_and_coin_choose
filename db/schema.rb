@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180123182851) do
+ActiveRecord::Schema.define(version: 20180125100643) do
+
+  create_table "currencies", force: :cascade do |t|
+    t.boolean "bitcoin"
+    t.boolean "lightcoin"
+    t.boolean "dogecoin"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "phones", force: :cascade do |t|
-    t.string "number"
+    t.string "country_code"
+    t.string "normalized_number"
     t.boolean "active"
     t.boolean "valid_number"
     t.integer "user_id"

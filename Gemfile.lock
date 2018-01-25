@@ -84,6 +84,9 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.3)
+    effective_form_inputs (1.1.15)
+      rails (>= 3.2.0)
+      simple_form (>= 3.1.0)
     erubi (1.7.0)
     erubis (2.7.0)
     execjs (2.7.0)
@@ -218,6 +221,9 @@ GEM
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
     sexp_processor (4.10.0)
+    simple_form (3.5.0)
+      actionpack (> 4, < 5.2)
+      activemodel (> 4, < 5.2)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-commands-rspec (1.0.4)
@@ -274,6 +280,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   database_cleaner
   devise
+  effective_form_inputs
   factory_bot_rails
   faker
   haml-rails
