@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Phone < ApplicationRecord
   belongs_to :user, optional: true
   has_many :validation_tokens
@@ -12,17 +14,16 @@ class Phone < ApplicationRecord
   attr_accessor :number
 
   def number
-    country_code+normalized_number
+    country_code + normalized_number
   end
 
-
   def send_validation
-    if self.number != nil
-      phone_object = TelephoneNumber.parse(self.number) # https://github.com/mobi/telephone_number
+    unless number.nil?
+      phone_object = TelephoneNumber.parse(number) # https://github.com/mobi/telephone_number
       if phone_object.valid?
         client = Twilio::REST::Client.new Rails.application.secrets.twilio_account_sid,
-        Rails.application.secrets.twilio_auth_token
-        tk = ValidationToken.create(phone_id: self.id)
+                                          Rails.application.secrets.twilio_auth_token
+        tk = ValidationToken.create(phone_id: id)
 
         # for dummy tests commenting below code
 
@@ -38,19 +39,17 @@ class Phone < ApplicationRecord
   # @param [String, #read] token from user input, example: "321456"
   # @return [Boolean] true if token is good and update Phone attributes, false if expired
   def check_token(token_to_check)
-    token_sended = self.validation_tokens.last
+    token_sended = validation_tokens.last
     if token_sended.is_on_time?
       token_sended.token == token_to_check
       update_attribute('active', true)
       update_attribute('valid_number', true)
     else
-      puts "token expired!"
+      puts 'token expired!'
       false
     end
   end
-
 end
-
 
 class PhoneNumberValidator < ActiveModel::Validator
   def initialize(phone)
@@ -60,7 +59,7 @@ class PhoneNumberValidator < ActiveModel::Validator
   def validate
     phone_object = TelephoneNumber.parse(@phone.number) # https://github.com/mobi/telephone_number
     unless phone_object.valid? && phone_object.valid_types.include?(:mobile)
-      @phone.errors[:base] << "Phone not valid or not mobile number"
+      @phone.errors[:base] << 'Phone not valid or not mobile number'
     end
   end
 end

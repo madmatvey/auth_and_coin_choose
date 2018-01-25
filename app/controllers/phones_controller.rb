@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class PhonesController < ApplicationController
-  before_action :set_phone, only: [:show, :edit, :confirm, :update, :destroy]
+  before_action :set_phone, only: %i[show edit confirm update destroy]
   include AjaxModalRails::Controller
   def new
     @phone = Phone.new
@@ -12,8 +14,7 @@ class PhonesController < ApplicationController
     # @number=TelephoneNumber.parse(@phone.number).normalized_number
   end
 
-  def confirm
-  end
+  def confirm; end
 
   def create
     @phone = Phone.new(phone_params)
@@ -44,14 +45,14 @@ class PhonesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_phone
-      @phone = Phone.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def phone_params
-      params.require(:phone).permit(:normalized_number,:confirm_code,:country_code)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_phone
+    @phone = Phone.find(params[:id])
+  end
 
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def phone_params
+    params.require(:phone).permit(:normalized_number, :confirm_code, :country_code)
+  end
 end

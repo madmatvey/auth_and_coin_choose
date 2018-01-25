@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class CurrenciesController < ApplicationController
-  before_action :set_currency, only: [:show, :edit, :update, :destroy]
+  before_action :set_currency, only: %i[show edit update destroy]
 
   # GET /currencies
   # GET /currencies.json
@@ -9,8 +11,7 @@ class CurrenciesController < ApplicationController
 
   # GET /currencies/1
   # GET /currencies/1.json
-  def show
-  end
+  def show; end
 
   # GET /currencies/new
   def new
@@ -18,8 +19,7 @@ class CurrenciesController < ApplicationController
   end
 
   # GET /currencies/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /currencies
   # POST /currencies.json
@@ -62,13 +62,14 @@ class CurrenciesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_currency
-      @currency = Currency.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def currency_params
-      params.require(:currency).permit(:bitcoin, :lightcoin, :dogecoin)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_currency
+    @currency = Currency.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def currency_params
+    params.require(:currency).permit(:bitcoin, :lightcoin, :dogecoin)
+  end
 end
