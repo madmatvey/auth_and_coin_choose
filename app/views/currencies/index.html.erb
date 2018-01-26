@@ -1,0 +1,29 @@
+<h1>Listing currencies choises</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Bitcoin</th>
+      <th>Lightcoin</th>
+      <th>Dogecoin</th>
+      <th>User</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @currencies.each do |currency| %>
+      <tr>
+        <td>
+          <%= currency.bitcoin %>
+        </td>
+        <td>
+          <%= currency.lightcoin %>
+        </td>
+        <td>
+          <%= currency.dogecoin %>
+        </td>
+        <td>
+          <%= currency.user_id %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# CRUD class controller for choose cryptocurrency
 class CurrenciesController < ApplicationController
   before_action :set_currency, only: %i[show edit update destroy]
 

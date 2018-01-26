@@ -33,13 +33,11 @@ group :development do
 end
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'devise'
-gem 'haml-rails'
 gem 'high_voltage'
 gem 'jquery-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 group :development do
   gem 'better_errors'
-  gem 'html2haml'
   gem 'rails_layout'
   gem 'spring-commands-rspec'
 end

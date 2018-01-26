@@ -1,0 +1,31 @@
+<%= form_for @currency do |f| %>
+  <% if @currency.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= "#{pluralize(@currency.errors.count, "error")} prohibited this currency from being saved:" %>
+      </h2>
+      <ul>
+        <% @currency.errors.full_messages.each do |message| %>
+          <li>
+            <%= message %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :bitcoin %>
+    <%= f.check_box :bitcoin %>
+  </div>
+  <div class="field">
+    <%= f.label :lightcoin %>
+    <%= f.check_box :lightcoin %>
+  </div>
+  <div class="field">
+    <%= f.label :dogecoin %>
+    <%= f.check_box :dogecoin %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Save' %>
+  </div>
+<% end %>
