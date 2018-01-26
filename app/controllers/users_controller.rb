@@ -7,14 +7,10 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  def show
-    @user = if params[:id]
-              User.find(params[:id])
-            else
-              current_user
-            end
 
-    # @user = User.find(params[:id])
+  def show # комментарий на русском языке
+    @user = params[:id] ? User.find(params[:id]) : current_user
+
     redirect_to root_path, alert: 'Access denied.' unless @user == current_user
     if current_user.current_phone.nil?
       if current_user.phones.size == 1

@@ -64,13 +64,13 @@ class CurrenciesController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_currency
-    @currency = Currency.find(params[:id])
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_currency
+      @currency = Currency.find(params[:id])
+    end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def currency_params
-    params.require(:currency).permit(:bitcoin, :lightcoin, :dogecoin)
-  end
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def currency_params
+      params.require(:currency).permit(:bitcoin, :lightcoin, :dogecoin)
+    end
 end

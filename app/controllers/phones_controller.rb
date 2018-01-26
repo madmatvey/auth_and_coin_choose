@@ -46,13 +46,13 @@ class PhonesController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_phone
-    @phone = Phone.find(params[:id])
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_phone
+      @phone = Phone.find(params[:id])
+    end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def phone_params
-    params.require(:phone).permit(:normalized_number, :confirm_code, :country_code)
-  end
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def phone_params
+      params.require(:phone).permit(:normalized_number, :confirm_code, :country_code)
+    end
 end
