@@ -7,9 +7,7 @@ class Phone < ApplicationRecord
   validates :normalized_number, uniqueness: true
   # validates :phone, effective_tel: true
   #   telephone_number: {country: proc{|record| record.country}, types: [:mobile]}
-  validate do |phone|
-    PhoneNumberValidator.new(phone).validate
-  end
+  validate { |phone| PhoneNumberValidator.new(phone).validate }
 
   attr_accessor :number
 

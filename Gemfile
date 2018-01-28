@@ -19,6 +19,8 @@ gem 'ajax_modal_rails', '~> 1.0'
 gem 'effective_form_inputs'
 gem 'telephone_number'
 gem 'twilio-ruby', '~> 5.6.1'
+gem 'wicked'
+gem 'simple_form'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -37,9 +39,9 @@ gem 'high_voltage'
 gem 'jquery-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 group :development do
-  gem 'better_errors'
   gem 'rails_layout'
   gem 'spring-commands-rspec'
+  gem 'pry-rails'
 end
 group :development, :test do
   gem 'factory_bot_rails'

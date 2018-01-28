@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :number %>
-    <%= f.select :country_code, options_for_select(TelephoneNumber::Country.all_countries.map{ |x| [x.country_id, x.country_code] }), {}, :id => "country_code_select" %>
+    <%= f.select :country_code, options_for_select(TelephoneNumber::Country.all_countries.map{ |x| [x.country_id, x.country_code] }, selected: f.object.country_code), {}, :id => "country_code_select" %>
     <%= f.text_field :normalized_number, placeholder: "9991231234", id: "phone_number_field" %>
   </div>
 

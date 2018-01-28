@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def show # комментарий на русском языке
     @user = params[:id] ? User.find(params[:id]) : current_user
 
-    redirect_to root_path, alert: 'Access denied.' unless @user == current_user
+    # redirect_to root_path, alert: 'Access denied.' unless @user == current_user
     if current_user.current_phone.nil?
       if current_user.phones.size == 1
         flash[:warning] = "You should #{view_context.link_to('confirm phone number', confirm_phone_path(current_user.phones.last), data: { loads_in_ajax_modal: true })}"
